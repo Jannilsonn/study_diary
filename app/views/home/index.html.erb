@@ -1,0 +1,15 @@
+<% content_for :title do %>
+    Study Diary
+<% end %>
+
+<h1>Diário de estudos - iugu for devs</h1>
+
+<br>
+
+<ul>
+    <% @items.each do |item| %>
+    <li>
+        <%= item %>
+    </li>
+    <% end %>
+</ul>
