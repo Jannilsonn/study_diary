@@ -1,0 +1,20 @@
+<% content_for :title do %>
+    <%= @study_item.title %> - Editar
+<% end %>
+
+<section>
+    <div class="box-form">
+        <h3>Preencha o formulário</h3>
+        <%= form_for(@study_item, :html => { :method => :patch, :remote => true }) do |f| %>
+            <input type="hidden" value="patch" name="_method">
+            <p>Título</p>
+            <input type="text" name="title" value="<%= @study_item.title %>" />
+            <br/><br/>
+            <p>Categoria</p>
+            <input type="text" name="category" value="<%= @study_item.category %>" />
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <br/><br/>
+            <input type="submit" value="Salvar" />
+        <% end %>
+    </div>
+</section>

@@ -2,14 +2,44 @@
     Study Diary
 <% end %>
 
-<h1>Diário de estudos - iugu for devs</h1>
-
-<br>
-
-<ul>
-    <% @items.each do |item| %>
-    <li>
-        <%= item %>
-    </li>
+<section>
+    <% if @items.empty? %>
+        <h3>Lista de estudos vasia</h3>
+    <% else %>
+        <h3>Lista de estudos</h3>
+        <br/>
+        <div class="box-study_item">
+            <ul>
+                <% @items.each do |item| %>
+                <li>
+                    <div class="actions">
+                        <button>
+                             <%= link_to("Editar", edit_study_item_path(item.id)) %>
+                        </button>
+                        <%= form_for(item, :html => { :method => :delete, :remote => true, :id => :delete }) do |f| %>
+                            <input type="hidden" value="delete" name="_method">
+                            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                            <input type="submit" value="Excluir"
+                                onclick="return confirm('Tem certeza que deseja excluir o item?') ? true : false;"
+                            />
+                        <% end %>
+                    </div>
+                    <div class="item">
+                        <%= form_for(item, :html => { :method => :patch, :remote => true, }) do |f| %>
+                            <input type="hidden" value="patch" name="_method">
+                            <input type="checkbox" name="done"
+                                <% if item.done %>
+                                    checked
+                                <% end %>
+                                onclick="this.parentNode.submit();"
+                            />
+                            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                        <% end %>
+                        <%= link_to("#{item.title} - #{item.category}", study_item_path(item.id)) %>
+                    </div>
+                </li>
+                <% end %>
+            </ul>
+        </div>
     <% end %>
-</ul>
+</section>

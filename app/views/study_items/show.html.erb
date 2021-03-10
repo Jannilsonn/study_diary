@@ -1,0 +1,18 @@
+<% content_for :title do %>
+    <%= @study_item.title %>
+<% end %>
+
+<section>
+    <div class="box-item">
+        <h4 class="done">
+            <% if @study_item.done %>
+                <small class="doneT">Concluído</small>
+            <% else %>
+                <small class="doneF">Pendente</small>
+            <% end %>
+        </h4>
+        <p>Título: <strong><%= @study_item.title %></strong></p>
+        <br/>
+        <p>Categoria: <strong><%= @study_item.category %></strong></p>
+    </div>
+</section>

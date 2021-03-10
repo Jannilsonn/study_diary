@@ -1,0 +1,19 @@
+<% content_for :title do %>
+    Novo
+<% end %>
+
+<section>
+    <div class="box-form">
+        <h3>Preencha o formulário</h3>
+        <form method="POST" action="<%= study_items_path() %>">
+            <p>Título</p>
+            <input type="text" name="title" />
+            <br/><br/>
+            <p>Categoria</p>
+            <input type="text" name="category" />
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <br/><br/>
+            <input type="submit" value="Enviar" />
+        </form>
+    </div>
+</section>

@@ -13,3 +13,112 @@
  *= require_tree .
  *= require_self
  */
+
+ * {margin: 0;padding: 0;box-sizing: border-box;}
+
+body {
+    font-size: 17px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.header-page {
+    padding: 20px;
+    background-color: #aaa;
+}
+.title-page {
+    text-align: center;
+}
+.header-nav ul {
+    text-align: center;
+    list-style: none;
+}
+.header-nav li {
+    margin: 10px;
+    display: inline-block;
+}
+
+article {
+    padding: 20px;
+}
+
+.box-study_item ul {
+    list-style: none;
+}
+.box-study_item li {
+    padding: 10px;
+}
+.box-study_item li a {
+    color: #111;
+    text-decoration: none;
+    font-weight: 600;
+}
+.box-study_item li:nth-child(even) {
+    background: #DDD;
+}
+.box-study_item li:nth-child(odd) {
+    background: #EEE;
+}
+.actions {
+    float: right;
+    display: flex;
+}
+.actions button {
+    border: none;
+    padding: 5px;
+    background-color: cornflowerblue;
+}
+
+.actions button a {
+    color: #fff;
+}
+.box-study_item input[type="submit"] {
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    margin-left: 5px;
+    background-color: crimson;
+}
+.item {
+    display: flex;
+}
+.item form {
+    margin-right: 10px;
+}
+.item form input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.box-form h3 {
+    margin-bottom: 20px;
+}
+.box-form > form > p {
+    font-weight: bold;
+}
+.box-form input {
+    width: 300px;
+    padding: 10px;
+}
+.box-form input[type="submit"] {
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    background-color: green;
+}
+
+.box-item > p {
+    padding: 10px;
+    background: #EEE;
+}
+.done {
+    margin-bottom: 20px;
+}
+.doneT {
+    color: #fff;
+    padding: 10px;
+    background-color: forestgreen;
+}
+.doneF {
+    color: #fff;
+    padding: 10px;
+    background-color: crimson;
+}
