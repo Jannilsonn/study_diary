@@ -14,5 +14,9 @@
         <p>Título: <strong><%= @study_item.title %></strong></p>
         <br/>
         <p>Categoria: <strong><%= @study_item.category %></strong></p>
+        <% if !@study_item.description.empty? %>
+            <br/>
+            <p>Descrição: <strong><%= @study_item.description %></strong></p>
+        <% end %>
     </div>
 </section>

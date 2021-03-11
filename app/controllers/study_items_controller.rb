@@ -5,16 +5,19 @@ class StudyItemsController < ApplicationController
     end
 
     def new
+        @study_item = StudyItem.new
     end
 
     def create
-        title = params[:title]
-        category = params[:category]
+        data = params.require(:study_item).permit(:title, :category, :description)
+        @study_item = StudyItem.new(data)
 
-        if !title.empty? && !category.empty?
-            newItem = StudyItem.new(title: title, category: params[:category])
-            newItem.save()
-            redirect_to '/'
+        if @study_item.save
+            redirect_to root_path
+        else
+            @title_error = @study_item.errors[:title].join(", ")
+            @category_error = @study_item.errors[:category].join(",")
+            render 'new'
         end
     end
 
@@ -23,27 +26,31 @@ class StudyItemsController < ApplicationController
     end
 
     def update
-        study_item = StudyItem.find(params[:id])
+        data = params.require(:study_item).permit(:title, :category, :done, :description)
+        @study_item = StudyItem.find(params[:id])
 
-        if params.key?("title") && params.key?("category")
-            title = params[:title]
-            category = params[:category]
-    
-            if !title.empty? && !category.empty?
-                study_item.title = title
-                study_item.category = category
-                study_item.save()
-                redirect_to '/'
-            end 
+        if data.key?("done")
+            @study_item.done = (1 - data[:done].to_i)
+            @study_item.save
+            redirect_to root_path
         else
-            study_item.done = params[:done]
-            study_item.save()
-            redirect_to '/'
+            @study_item.title = data[:title]
+            @study_item.category = data[:category]
+            @study_item.description = data[:description]
+            
+            if @study_item.save
+                redirect_to root_path
+            else
+                @title_error = @study_item.errors[:title].join(", ")
+                @category_error = @study_item.errors[:category].join(", ")
+                @description_error = @study_item.errors[:description].join(", ")
+                render 'edit'
+            end
         end
     end
 
     def destroy
         StudyItem.find(params[:id]).destroy()
-        redirect_to '/'
+        redirect_to root_path
     end
 end

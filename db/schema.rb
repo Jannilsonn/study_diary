@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_181200) do
+ActiveRecord::Schema.define(version: 2021_03_11_221120) do
 
   create_table "study_items", force: :cascade do |t|
     t.string "title"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_03_09_181200) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "done", default: false
+    t.string "description"
   end
 
 end

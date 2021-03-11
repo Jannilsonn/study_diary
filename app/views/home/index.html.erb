@@ -4,38 +4,51 @@
 
 <section>
     <% if @items.empty? %>
-        <h3>Lista de estudos vasia</h3>
+        <h3>
+            Adiciona um item a sua lista
+            <span class="material-icons">
+                <%= link_to 'add_box', new_study_item_path() %>
+            </span>
+        </h3>
     <% else %>
-        <h3>Lista de estudos</h3>
+        <h3>
+            Lista de estudos
+            <span class="material-icons" style="float: right;">
+                <%= link_to 'add_box', new_study_item_path() %>
+            </span>
+        </h3>
         <br/>
         <div class="box-study_item">
             <ul>
                 <% @items.each do |item| %>
                 <li>
                     <div class="actions">
-                        <button>
-                             <%= link_to("Editar", edit_study_item_path(item.id)) %>
-                        </button>
-                        <%= form_for(item, :html => { :method => :delete, :remote => true, :id => :delete }) do |f| %>
-                            <input type="hidden" value="delete" name="_method">
-                            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-                            <input type="submit" value="Excluir"
-                                onclick="return confirm('Tem certeza que deseja excluir o item?') ? true : false;"
-                            />
+                        <span class="material-icons">
+                             <%= link_to("mode_edit", edit_study_item_path(item.id)) %>
+                        </span>
+                        <%= form_with model: item, method: :delete do |form| %>
+                            <span class="material-icons"
+                                onclick="return confirm('Tem certeza que deseja excluir o item?') ? this.parentNode.submit() : false;"
+                            >delete</span>
                         <% end %>
                     </div>
                     <div class="item">
-                        <%= form_for(item, :html => { :method => :patch, :remote => true, }) do |f| %>
-                            <input type="hidden" value="patch" name="_method">
-                            <input type="checkbox" name="done"
+                        <%= form_with model: item, method: :patch do |form| %>
+                            <%= form.check_box :done, {hidden:true} %>
+                            <span class="material-icons" onclick="this.parentNode.submit();">
                                 <% if item.done %>
-                                    checked
+                                    <%= form.label :done, 'check_box' %>
+                                <% else %>
+                                    <%= form.label :done, 'check_box_outline_blank' %>
                                 <% end %>
-                                onclick="this.parentNode.submit();"
-                            />
-                            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                            </span>
                         <% end %>
-                        <%= link_to("#{item.title} - #{item.category}", study_item_path(item.id)) %>
+                        <span class="item-title">
+                            <%= link_to("#{item.title}", study_item_path(item.id)) %>
+                        </span>
+                        <span class="item-category">
+                            <%= item.category %>
+                        </span>
                     </div>
                 </li>
                 <% end %>

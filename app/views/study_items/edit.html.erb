@@ -5,16 +5,29 @@
 <section>
     <div class="box-form">
         <h3>Preencha o formulário</h3>
-        <%= form_for(@study_item, :html => { :method => :patch, :remote => true }) do |f| %>
-            <input type="hidden" value="patch" name="_method">
-            <p>Título</p>
-            <input type="text" name="title" value="<%= @study_item.title %>" />
-            <br/><br/>
-            <p>Categoria</p>
-            <input type="text" name="category" value="<%= @study_item.category %>" />
-            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-            <br/><br/>
-            <input type="submit" value="Salvar" />
+        <%= form_with model: @study_item do |form| %>
+            <div class="form-group">
+                <h4><%= form.label :title, 'Título' %></h4>
+                <%= form.text_field :title %>
+                <% if @title_error %>
+                    <div class="error-menssage"><%= @title_error %></div>
+                <% end %>
+            </div>
+            <div class="form-group">
+                <h4><%= form.label :category, 'Categoria' %></h4>
+                <%= form.text_field :category %>
+                <% if @category_error %>
+                    <div class="error-menssage"><%= @category_error %></div>
+                <% end %>
+            </div>
+            <div class="form-group">
+                <h4><%= form.label :description, 'Descrição' %></h4>
+                <%= form.text_area :description %>
+                <% if @description_error %>
+                    <div class="error-menssage"><%= @description_error %></div>
+                <% end %>
+            </div>
+            <%= form.submit %>
         <% end %>
     </div>
 </section>
