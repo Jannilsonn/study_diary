@@ -11,5 +11,7 @@ Rails.application.routes.draw do
     # PATCH  /study_items/:id(.:format) study_items#update
 
     # DELETE /study_items/:id(.:format)  study_items#destroy
-    resources :study_items, only: [:show, :new, :create, :edit, :update, :destroy]
+    resources :study_items, only: [:show, :new, :create, :edit, :update, :destroy] do
+        put 'update_done', on: :member
+    end
 end

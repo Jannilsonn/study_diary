@@ -1,0 +1,132 @@
+* {margin: 0;padding: 0;box-sizing: border-box;color: rgba(255, 255, 255, 40%);}
+a, input[type="submit"] {
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+ul {
+    list-style: none;
+}
+body {
+    font-size: 17px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(18, 18, 18);
+}
+
+/* Header */
+.header-page {
+    padding: 20px;
+}
+.title-page {
+    text-align: center;
+}
+.header-nav ul {
+    text-align: center;
+    list-style: none;
+}
+.header-nav li {
+    margin: 10px;
+    display: inline-block;
+}
+
+article {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 5%);
+}
+
+/* home */
+
+.box-table {
+    overflow: auto;
+}
+.table-items {
+    width: 100%;
+}
+.table-items tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 10%);
+}
+.table-items tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 2%);
+}
+.item-done {
+    width: 50px;
+    text-align: center;
+}
+.item-done label {
+    cursor: pointer;
+}
+.table-items th, .item-title p, .item-category p {
+    padding: 5px;
+}
+.item-title p, .item-category p {
+    min-width: 200px;
+}
+.item-done span, .actions span {
+    margin: 5px;
+}
+.actions {
+    float: right;
+    display: flex;
+}
+.actions span {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+/* Item */
+.box-item > p {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 10%);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.7);
+}
+.done {
+    width: 100px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 10%);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.7);
+}
+.doneT {
+    color: forestgreen;
+}
+.doneF {
+    color: crimson;
+}
+
+/* Form */
+.box-form form {
+    width: 300px;
+    padding: 20px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 5%);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.7);
+}
+.box-form h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.box-form input, .box-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    margin: 5px 0px;
+    background-color: rgba(255, 255, 255, 5%);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.7);
+}
+.box-form textarea {
+    height: 70px;
+}
+.form-group {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.field_with_errors > input, .field_with_errors > textarea {
+    border: 1px solid crimson;
+}
+.error-menssage {
+    margin: 5px 0px;
+    width: 100%;
+    font-size: 12px;
+    color: crimson;
+}

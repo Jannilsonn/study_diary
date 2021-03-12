@@ -1,7 +1,6 @@
 class StudyItemsController < ApplicationController
-    
     def show
-        @study_item = StudyItem.find(params[:id])
+        @study_item = set_study_item
     end
 
     def new
@@ -9,8 +8,7 @@ class StudyItemsController < ApplicationController
     end
 
     def create
-        data = params.require(:study_item).permit(:title, :category, :description)
-        @study_item = StudyItem.new(data)
+        @study_item = StudyItem.new(study_item_params)
 
         if @study_item.save
             redirect_to root_path
@@ -22,35 +20,40 @@ class StudyItemsController < ApplicationController
     end
 
     def edit
-        @study_item = StudyItem.find(params[:id])
+        @study_item = set_study_item
     end
 
     def update
-        data = params.require(:study_item).permit(:title, :category, :done, :description)
-        @study_item = StudyItem.find(params[:id])
-
-        if data.key?("done")
-            @study_item.done = (1 - data[:done].to_i)
-            @study_item.save
+        @study_item = set_study_item
+        @study_item.update(study_item_params)
+        
+        if @study_item.save
             redirect_to root_path
         else
-            @study_item.title = data[:title]
-            @study_item.category = data[:category]
-            @study_item.description = data[:description]
-            
-            if @study_item.save
-                redirect_to root_path
-            else
-                @title_error = @study_item.errors[:title].join(", ")
-                @category_error = @study_item.errors[:category].join(", ")
-                @description_error = @study_item.errors[:description].join(", ")
-                render 'edit'
-            end
+            @title_error = @study_item.errors[:title].join(", ")
+            @category_error = @study_item.errors[:category].join(", ")
+            @description_error = @study_item.errors[:description].join(", ")
+            render 'edit'
         end
     end
 
-    def destroy
-        StudyItem.find(params[:id]).destroy()
+    def update_done
+        set_study_item.update(done: (1 - study_item_params[:done].to_i))
+        set_study_item.save
         redirect_to root_path
     end
+
+    def destroy
+        set_study_item.destroy
+        redirect_to root_path
+    end
+
+    private
+        def set_study_item
+            StudyItem.find(params[:id])
+        end
+
+        def study_item_params
+            params.require(:study_item).permit(:title, :category, :done, :description)
+        end
 end
